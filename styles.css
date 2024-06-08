@@ -421,6 +421,8 @@ nav {
   width: 100vw;
   background: #be0006;
   padding: 25px 0;
+  position: relative;
+  overflow: hidden;
 }
 .trad-card {
   width: 80vw;
@@ -430,6 +432,11 @@ nav {
   justify-content: center;
   gap: 15px;
   flex-wrap: wrap;
+  scroll-behavior: smooth;
+  
+}
+.trad-card::-webkit-scrollbar {
+  display: none; 
 }
 .small-card {
   background: white;
@@ -512,6 +519,12 @@ nav {
 
 #trad::-webkit-scrollbar {
   display: none;
+}
+.highlighted {
+  opacity: 1 !important;
+  /* transform: scale(1.2) !important; */
+  border-radius: 30px;
+  z-index: 1;
 }
 
 /* video section styles */

@@ -104,6 +104,30 @@ for (let i = 0; i < 5; i++) {
   tradCard.appendChild(card);
 }
 
+function highlightCard() {
+  const cards = document.querySelectorAll(".trad-scroll");
+  const container = document.getElementById("trad");
+  const containerRect = container.getBoundingClientRect();
+  const containerCenter = containerRect.left + containerRect.width / 2;
+
+  cards.forEach((card) => {
+    const cardRect = card.getBoundingClientRect();
+    const cardCenter = cardRect.left + cardRect.width / 2;
+    const distance = Math.abs(containerCenter - cardCenter);
+
+    if (distance < cardRect.width / 2) {
+      card.classList.add("highlighted");
+    } else {
+      card.classList.remove("highlighted");
+    }
+  });
+}
+
+tradCard.addEventListener("scroll", highlightCard);
+
+// Initialize the first highlight
+highlightCard();
+
 function scrollNext() {
   const container = document.getElementById("trad");
   const scrollAmount = 500 + 20;
@@ -111,6 +135,7 @@ function scrollNext() {
     left: scrollAmount,
     behavior: "smooth",
   });
+  setTimeout(highlightCard, 500); // Wait for scrolling to finish before highlighting
 }
 
 function scrollPrev() {
@@ -120,9 +145,10 @@ function scrollPrev() {
     left: -scrollAmount,
     behavior: "smooth",
   });
+  setTimeout(highlightCard, 500); // Wait for scrolling to finish before highlighting
 }
 
-// navbar toggle
+// Navbar toggle logic remains unchanged
 function handleNavVisibility() {
   const navOne = document.getElementById("nav-one");
   const navTwo = document.getElementById("nav-two");
